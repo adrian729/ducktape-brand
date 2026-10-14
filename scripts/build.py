@@ -7,6 +7,7 @@ from xml.etree import ElementTree as ET
 import cairosvg
 from fontTools.pens.svgPathPen import SVGPathPen
 from fontTools.ttLib import TTFont
+from compose import compose
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -28,6 +29,7 @@ def canvas(view_box: str, label: str) -> ET.Element:
     return ET.Element(tag("svg"), {"viewBox": view_box, "role": "img", "aria-label": label})
 
 
+compose()
 IMAGE_URI = "data:image/png;base64," + base64.b64encode((ROOT / "source/mark.png").read_bytes()).decode("ascii")
 FONT = TTFont(ROOT / "source/fonts/LiberationSans-Bold.ttf")
 GLYPHS = FONT.getGlyphSet()
@@ -39,7 +41,7 @@ def add_mark(parent: ET.Element, x: float, y: float, width: float, height: float
     # The inner viewBox trims transparent canvas without altering the artwork.
     frame = ET.SubElement(parent, tag("svg"), {
         "x": str(x), "y": str(y), "width": str(width), "height": str(height),
-        "viewBox": "150 20 1220 940", "preserveAspectRatio": "xMidYMid meet",
+        "viewBox": "300 100 1000 800", "preserveAspectRatio": "xMidYMid meet",
     })
     ET.SubElement(frame, tag("image"), {
         "x": "0", "y": "0", "width": "1536", "height": "1024", "href": IMAGE_URI,

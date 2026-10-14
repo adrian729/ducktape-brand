@@ -5,13 +5,14 @@
   </picture>
 </p>
 
-Brand assets for the ducktape software projects. The mark shows a mallard peeking through a roll of duct tape. It preserves the selected roll and torn tape composition, with the duck colored after the male mallard reference.
+Brand assets for the ducktape software projects. The mark combines the original selected tape artwork with the mallard duck. The tape pixels are preserved exactly outside the area covered by the duck.
 
 ## Use the assets
 
 | Need | File |
 | --- | --- |
 | Master transparent artwork | [`source/mark.png`](source/mark.png) |
+| Separate mallard cutout | [`source/duck-cutout.png`](source/duck-cutout.png) |
 | Icon in SVG container | [`assets/mark.svg`](assets/mark.svg) |
 | Square favicon | [`assets/favicon.svg`](assets/favicon.svg) |
 | Standalone lockup | [`assets/lockup-light.svg`](assets/lockup-light.svg), [`assets/lockup-dark.svg`](assets/lockup-dark.svg) |
@@ -22,14 +23,16 @@ Use the light lockup on light backgrounds and the dark lockup on dark background
 
 ## Source and regeneration
 
-[`source/mark.png`](source/mark.png) is the high resolution transparent master. The SVGs embed that image; they are **not fully vector artwork**. The lockup lettering is outlined vector text, using Liberation Sans Bold from [`source/fonts/`](source/fonts/). The selected sketch and earlier refinement are preserved in [`concepts/`](concepts/) for reference.
+[`source/mark.png`](source/mark.png) is the 1536 × 1024 transparent master. The SVGs embed that image; they are **not fully vector artwork**. The lockup lettering is outlined vector text, using Liberation Sans Bold from [`source/fonts/`](source/fonts/).
+
+The composition uses [`concepts/raster-refinement.png`](concepts/raster-refinement.png) as the original tape and extracts only the duck from [`source/duck-reference.png`](source/duck-reference.png). [`scripts/compose.py`](scripts/compose.py) scales the duck uniformly, composites it into the original, and checks that every pixel outside [`source/duck-edit-mask.png`](source/duck-edit-mask.png) matches the original exactly. The reference images and composition recipe are retained so future exports do not require redrawing the tape.
 
 ```sh
 uv sync --locked
 uv run --locked python scripts/build.py
 ```
 
-The build writes the SVGs under `assets/` and PNG sizes under `exports/png/`. Commit the source image and generated files together.
+The build first regenerates and checks the composition, then writes the SVGs under `assets/` and PNG sizes under `exports/png/`. Commit source and generated files together.
 
 ## Color direction
 
