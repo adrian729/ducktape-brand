@@ -5,41 +5,32 @@
   </picture>
 </p>
 
-Canonical logo assets for the ducktape software projects. The mark is a duck peeking through a roll of duct tape. All SVG exports contain vector paths; the text in the lockups is outlined so it does not depend on a font installed by the viewer.
+Brand assets for the ducktape software projects. The mark shows a mallard peeking through a roll of duct tape. It preserves the selected roll and torn tape composition, with the duck colored after the male mallard reference.
 
 ## Use the assets
 
 | Need | File |
 | --- | --- |
-| Main icon | [`assets/mark-color.svg`](assets/mark-color.svg) |
-| Icon at 64 px or smaller | [`assets/mark-small.svg`](assets/mark-small.svg) |
-| Black-and-white icon | [`assets/mark-mono.svg`](assets/mark-mono.svg) |
-| Square SVG favicon | [`assets/favicon.svg`](assets/favicon.svg) |
-| Standalone name and mark | [`assets/lockup-light.svg`](assets/lockup-light.svg), [`assets/lockup-dark.svg`](assets/lockup-dark.svg) |
-| Project name and mark | [`assets/product/`](assets/product/) |
-| PNG icons, 32–1024 px | [`exports/png/`](exports/png/) |
+| Master transparent artwork | [`source/mark.png`](source/mark.png) |
+| Icon in SVG container | [`assets/mark.svg`](assets/mark.svg) |
+| Square favicon | [`assets/favicon.svg`](assets/favicon.svg) |
+| Standalone lockup | [`assets/lockup-light.svg`](assets/lockup-light.svg), [`assets/lockup-dark.svg`](assets/lockup-dark.svg) |
+| Project lockups | [`assets/product/`](assets/product/) |
+| PNG icon exports, 32–1024 px | [`exports/png/`](exports/png/) |
 
-Use the light lockup on light backgrounds and the dark lockup on dark backgrounds. Keep the mark's proportions and leave clear space around its torn tape end. The small icon omits fine rings and the nostril so the duck remains visible at small sizes.
-
-The product repositories keep copies of the assets used in their READMEs. This repository is the source for edits and new exports.
+Use the light lockup on light backgrounds and the dark lockup on dark backgrounds. Keep the mark's proportions and leave clear space around the torn tape end. The product repositories contain copies of the files used in their READMEs.
 
 ## Source and regeneration
 
-[`source/mark.svg`](source/mark.svg) is the editable vector master. The selected sketch and its raster refinement are preserved in [`concepts/`](concepts/) for reference. The wordmark uses outlined Liberation Sans Bold, with the font and its license in [`source/fonts/`](source/fonts/).
+[`source/mark.png`](source/mark.png) is the high resolution transparent master. The SVGs embed that image; they are **not fully vector artwork**. The lockup lettering is outlined vector text, using Liberation Sans Bold from [`source/fonts/`](source/fonts/). The selected sketch and earlier refinement are preserved in [`concepts/`](concepts/) for reference.
 
 ```sh
 uv sync --locked
 uv run --locked python scripts/build.py
 ```
 
-The build writes the SVGs under `assets/` and transparent PNGs under `exports/png/`. Commit source and generated files together when the mark changes.
+The build writes the SVGs under `assets/` and PNG sizes under `exports/png/`. Commit the source image and generated files together.
 
-## Colors
+## Color direction
 
-| Part | Hex |
-| --- | --- |
-| Ink | `#1B1D20` |
-| Tape | `#BFC1C4` |
-| Tape side | `#83878B` |
-| Bill | `#F6C82C` |
-| Dark-background wordmark | `#F4F4F2` |
+The duck uses a green head, yellow bill, white neck ring, and brown chest, following the supplied mallard photo. The tape stays neutral gray so the duck remains the focal point.
